@@ -197,7 +197,7 @@ void DIO_voidSetPinDirectionRunTime(u8 u8PinNbCpy, u8 u8PinDirectionCpy)
 		}
 		else
 		{
-			GET_BIT(DDRB , u8PinNbCpy);
+			CLEAR_BIT(DDRB , u8PinNbCpy);
 		}
 	}
 	else if(u8PinNbCpy >= 16 && u8PinNbCpy <= 23)
