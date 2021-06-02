@@ -8,10 +8,10 @@
 #ifndef DIO_PRIV_H
 #define DIO_PRIV_H
 
-/**************************************/
-/* Description: INPUT and OUT value   */
-/*              definitions           */
-/**************************************/
+/*****************************************/
+/* Description: INPUT and OUTPUT value   */
+/*              definitions              */
+/*****************************************/
 
 #define DIO_u8INPUT			0
 #define DIO_u8OUTPUT		1
