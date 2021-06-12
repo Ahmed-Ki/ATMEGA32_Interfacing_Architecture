@@ -13,12 +13,12 @@
 #include "DIO_priv.h"
 
 
-/*********************************************/
-/* Description : Initialization function     */
-/*               it intializes the direction */
-/*               of the PINS based on the    */
-/*               cfg file                    */   
-/*********************************************/
+/**********************************************/
+/* Description : Initialization function      */
+/*               it initializes the direction */
+/*               of the PINS based on the     */
+/*               cfg file                     */   
+/**********************************************/
 
 void DIO_voidInit(void)
 {
