@@ -42,7 +42,7 @@ void EXTI1_voidDisable(void);
 void EXTI1_voidModeChange(u8 u8ModeCpy);
 
 
-/* This is a CallBack function used in Application layer to path it as an ISR */
+/* This is a CallBack function used in the Application layer to write your ISR (Interrupt Service Routine) */
 void EXTI1_voidSetCallBack(PF PfFuncAddrCpy);
 
 
