@@ -16,7 +16,7 @@
 
 
 
-volatile PF EXTI2_PfCallBackAddr = NULL;
+PF EXTI2_PfCallBackAddr = NULL;
 
 
 /* Initialize EXTI2 */
