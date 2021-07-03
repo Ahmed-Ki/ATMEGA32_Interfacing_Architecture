@@ -139,7 +139,7 @@ u8 DIO_u8GetPinValue(u8 u8PinNbCpy)
 }
 
 /*********************************************/
-/* Description: This function toggles the     */
+/* Description: This function toggles the    */
 /*              value of the PIN             */
 /*********************************************/
 
