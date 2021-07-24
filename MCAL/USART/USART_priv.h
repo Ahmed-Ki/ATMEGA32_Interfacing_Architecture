@@ -1,8 +1,8 @@
 /****************************************/
 /* Author      : Ahmed Khalid           */
 /* Description : Private file for USART */
-/* Date        : 17 Oct 2019            */
-/* version     : 1.0V                   */
+/* Date        : 11 Oct 2019            */
+/* Version     : 1.0V                   */
 /****************************************/
 
 
