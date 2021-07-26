@@ -18,42 +18,63 @@ PF USART_PfCallBackAddrUDRE = NULL;
 
 PF USART_PfCallBackAddrTXC = NULL;
 
+void SET_u8UCSRCBit(u8 u8Reg, u8 u8Bit)
+{
+	u8 Loc_u8TempReg = 0;
+	Loc_u8TempReg = UCSRC;
+	SET_BIT(u8Reg, u8Bit);
+}
+
+void CLEAR_u8UCSRCBit(u8 u8Reg, u8 u8Bit)
+{
+	u8 Loc_u8TempReg = 0;
+	Loc_u8TempReg = UCSRC;
+	CLEAR_BIT(u8Reg, u8Bit);
+}
+
+void GET_u8UCSRCBit(u8 u8Reg, u8 u8Bit)
+{
+	u8 Loc_u8TempReg = 0;
+	Loc_u8TempReg = UCSRC;
+	GET_BIT(u8Reg, u8Bit);
+}
+
 /* Initialize USART */
 void USART_voidInit(void)
 {
 
-	u16 Loc_UBBR_Value = 0;
+	u16 Loc_u16UBBR_Value = 0;
 
 	/* SET URSEL to enable writing in UCSRC */
-	SET_BIT(UCSRC, 7);
+	SET_u8UCSRCBit(UCSRC, 7);
 
 #if USART_OPERATION_MODE == ASYNCHRONOUS
-	CLEAR_BIT(UCSRC, 6);
+	CLEAR_u8UCSRCBit(UCSRC, 6);
 
 #elif USART_OPERATION_MODE == SYNCHRONOUS
-	SET_BIT(UCSRC, 6);
+	SET_u8UCSRCBit(UCSRC, 6);
 
 #else
-	CLEAR_BIT(UCSRC, 6);
+	CLEAR_u8UCSRCBit(UCSRC, 6);
 
 #endif
 
 /* Parity */
 #if USART_PARITY_MODE == DISABLED
-	CLEAR_BIT(UCSRC, 4);
-	CLEAR_BIT(UCSRC, 5);
+	CLEAR_u8UCSRCBit(UCSRC, 4);
+	CLEAR_u8UCSRCBit(UCSRC, 5);
 
 #elif USART_PARITY_MODE == EVEN
-	CLEAR_BIT(UCSRC, 4);
-	SET_BIT(UCSRC, 5);
+	CLEAR_u8UCSRCBit(UCSRC, 4);
+	SET_u8UCSRCBit(UCSRC, 5);
 
 #elif USART_PARITY_MODE == ODD
-	SET_BIT(UCSRC, 4);
-	SET_BIT(UCSRC, 5);
+	SET_u8UCSRCBit(UCSRC, 4);
+	SET_u8UCSRCBit(UCSRC, 5);
 
 #else
-	CLEAR_BIT(UCSRC, 4);
-	CLEAR_BIT(UCSRC, 5);
+	CLEAR_u8UCSRCBit(UCSRC, 4);
+	CLEAR_u8UCSRCBit(UCSRC, 5);
 
 #endif
 
@@ -76,26 +97,26 @@ void USART_voidInit(void)
 #if USART_OPERATION_MODE == ASYNCHRONOUS
 #if USART_SPEED_OPERATION == NORMAL_SPEED_MODE
 	/* Asynchronous Normal Mode 			*/
-	Loc_UBBR_Value = ((F_CPU / (16 * USART_BAUD_RATE)) - 1);
+	Loc_u16UBBR_Value = ((F_CPU / (16 * USART_BAUD_RATE)) - 1);
 
 #elif USART_SPEED_OPERATION == DOUBLE_SPEED_MODE
 	/* Asynchronous Double Speed Mode 		*/
-	Loc_UBBR_Value = ((F_CPU / (8 * USART_BAUD_RATE)) - 1);
+	Loc_u16UBBR_Value = ((F_CPU / (8 * USART_BAUD_RATE)) - 1);
 #endif
 #elif USART_OPERATION_MODE == SYNCHRONOUS
 	/* Synchronous Master Mode				*/
-	Loc_UBBR_Value = ((F_CPU / (2 * USART_BAUD_RATE)) - 1);
+	Loc_u16UBBR_Value = ((F_CPU / (2 * USART_BAUD_RATE)) - 1);
 
 #endif
 	/* CLEAR URSEL to enable writing in UBBRH */
-	CLEAR_BIT(UCSRC, 7);
+	CLEAR_u8UCSRCBit(UCSRC, 7);
 
 	/* Set baud rate */
-	UBRRH = (u8)(Loc_UBBR_Value >> 8);
-	UBRRL = (u8)Loc_UBBR_Value;
+	UBRRH = (u8)(Loc_u16UBBR_Value >> 8);
+	UBRRL = (u8)Loc_u16UBBR_Value;
 
 	/* SET URSEL to enable writing in UCSRC */
-	SET_BIT(UCSRC, 7);
+	SET_u8UCSRCBit(UCSRC, 7);
 
 	/* Enable receiver and transmitter */
 	SET_BIT(UCSRB, 3);
@@ -103,38 +124,38 @@ void USART_voidInit(void)
 
 /*	 Character Size N-Bits */
 #if USART_FRAME_SIZE == 5
-	CLEAR_BIT(UCSRC, 1);
-	CLEAR_BIT(UCSRC, 2);
+	CLEAR_u8UCSRCBit(UCSRC, 1);
+	CLEAR_u8UCSRCBit(UCSRC, 2);
 	CLEAR_BIT(UCSRB, 2);
 
 #elif USART_FRAME_SIZE == 6
-	SET_BIT(UCSRC, 1);
-	CLEAR_BIT(UCSRC, 2);
+	SET_u8UCSRCBit(UCSRC, 1);
+	CLEAR_u8UCSRCBit(UCSRC, 2);
 	CLEAR_BIT(UCSRB, 2);
 
 #elif USART_FRAME_SIZE == 7
-	CLEAR_BIT(UCSRC, 1);
-	SET_BIT(UCSRC, 2);
+	CLEAR_u8UCSRCBit(UCSRC, 1);
+	SET_u8UCSRCBit(UCSRC, 2);
 	CLEAR_BIT(UCSRB, 2);
 
 #elif USART_FRAME_SIZE == 8
-	SET_BIT(UCSRC, 1);
-	SET_BIT(UCSRC, 2);
+	SET_u8UCSRCBit(UCSRC, 1);
+	SET_u8UCSRCBit(UCSRC, 2);
 	CLEAR_BIT(UCSRB, 2);
 
 #elif USART_FRAME_SIZE == 9
-	SET_BIT(UCSRC, 1);
-	SET_BIT(UCSRC, 2);
+	SET_u8UCSRCBit(UCSRC, 1);
+	SET_u8UCSRCBit(UCSRC, 2);
 	SET_BIT(UCSRB, 2);
 
 #endif
 
 /*	Stop bit select number One or Two Bits */
 #if USART_STOP_BIT_SELECT == TWO_BIT
-	SET_BIT(UCSRC, 3);
+	SET_u8UCSRCBit(UCSRC, 3);
 
 #elif USART_STOP_BIT_SELECT == ONE_BIT
-	CLEAR_BIT(UCSRC, 3);
+	CLEAR_u8UCSRCBit(UCSRC, 3);
 
 #endif
 
@@ -142,10 +163,10 @@ void USART_voidInit(void)
 #if USART_OPERATION_MODE == SYNCHRONOUS
 
 #if CLOCK_POLARITY == RISING
-	CLEAR_BIT(UCSRC, 0);
+	CLEAR_u8UCSRCBit(UCSRC, 0);
 
 #elif CLOCK_POLARITY == FALLING
-	SET_BIT(UCSRC, 0);
+	SET_u8UCSRCBit(UCSRC, 0);
 
 #endif
 
@@ -214,7 +235,8 @@ void USART_voidReceiveCompleteInterruptDisable(void)
 /* Transmit 8bit Data */
 void USART_voidTransmit(u8 u8Data)
 {
-	while (GET_BIT(UCSRA, 5) == 0);
+	while (GET_BIT(UCSRA, 5) == 0)
+		;
 
 	UDR = u8Data;
 }
@@ -222,7 +244,8 @@ void USART_voidTransmit(u8 u8Data)
 /* Receive 8bit Data */
 u8 USART_u8Receive(void)
 {
-	while (GET_BIT(UCSRA, 7) == 0);
+	while (GET_BIT(UCSRA, 7) == 0)
+		;
 
 	return UDR;
 }

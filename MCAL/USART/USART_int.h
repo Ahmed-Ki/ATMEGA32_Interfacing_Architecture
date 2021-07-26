@@ -52,19 +52,20 @@ u8 USART_u8Receive(void);
 /* Receive Complete                                            */
 void USART_voidCallBackRXC(PF PfFuncAddrCpy);
 
-
 /* This is a CallBack function used in the Application layer   */
 /* to write your ISR (Interrupt Service Routine) for USART     */
 /* Data Register Empty                                         */
 void USART_voidCallBackUDRE(PF PfFuncAddrCpy);
-
-
 
 /* This is a CallBack function used in the Application layer   */
 /* to write your ISR (Interrupt Service Routine) for USART     */
 /* Transmission Complete                                       */
 void USART_voidCallBackTXC(PF PfFuncAddrCpy);
 
+void SET_u8UCSRCBit(u8 u8Reg, u8 u8Bit);
 
+void CLEAR_u8UCSRCBit(u8 u8Reg, u8 u8Bit);
+
+void GET_u8UCSRCBit(u8 u8Reg, u8 u8Bit);
 
 #endif
