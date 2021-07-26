@@ -89,7 +89,7 @@
 /*                                     0.5M     */
 /*                                     1M       */
 /************************************************/
-/* Note: 1M only works with DOUBEL_SPEED_MODE   */
+/* Note: 1M only works with DOUBLE_SPEED_MODE   */
 /************************************************/
 
 #define USART_BAUD_RATE     9600
