@@ -27,14 +27,13 @@ typedef enum
     Data_Rx_NO_ACK_Return = 0x58,
     /* End Master Receiver Mode */
 
-    /* Slave Reveicver Mode */
+    /* Slave Receiver Mode */
     Own_SLA_W_Rx_ACK_Return = 0x60,
     Arbritration_Lost_In_SLA_RW_As_Master_Own_SLA_W_Rx_ACK_Return = 0x68,
     General_Call_Addr_Rx_Ack_Return = 0x70,
     Arbritration_Lost_In_SLA_RW_As_Master_General_Call_Addr_Rx_ACK_Return = 0x78,
     Previously_Addr_With_Own_SLA_W_Data_Rx_ACK_Retrun = 0x80,
     Previously_Addr_With_Own_SLA_W_Data_Rx_NO_ACK_Retrun = 0x88,
-    Previously_Addr_With_General_Call_Data_Rx_ACK_Retrun = 0x90,
     Previously_Addr_With_General_Call_Data_Rx_ACK_Retrun = 0x90,
     Previously_Addr_With_General_Call_Data_Rx_NO_ACK_Retrun = 0x98,
     Stop_Condition_Or_Repeated_Start_Condition_Rx_While_Still_Addr_As_SLA = 0xA0,
