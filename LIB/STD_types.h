@@ -26,8 +26,15 @@ typedef enum
 	NULL_POINTER
 }ERRORSTATUS;
 
+
+/* Pointer to function */
 typedef void (*PF)(void);
 
+/* NULL Pointer */
 #define NULL  (void * )0
+
+/* Void Pointer */
+
+typedef void * VP;
 
 #endif
