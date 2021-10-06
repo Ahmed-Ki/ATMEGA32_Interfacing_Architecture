@@ -19,7 +19,7 @@
 /* CTC : Compare Match Output Mode  */
 /************************************/
 
-#define TIMER0_WAVEFORM_GENERATION_MODE NORMAL
+#define TIMER0_WAVEFORM_GENERATION_MODE CTC
 
 /*****************************************************/
 /*     Compare Match Output Mode for Non-PWM Mode    */
@@ -28,14 +28,20 @@
 /*       : CLEAR_OC0_ON_COM                          */
 /*		 : SET_OC0_ON_COM                            */
 /*****************************************************/
+/*             Only Use this table if                */ 
+/* TIMER0_WAVEFORM_GENERATION_MODE is Set to CTC     */
+/*****************************************************/
 
-#define TIMER0_COM_NON_PWM NORMAL_OP
+#define TIMER0_COM_NON_PWM SET_OC0_ON_COM
 
 /******************************************************************/
 /*          Compare Match Output Mode for Fast PWM Mode           */
 /* Modes : NORMAL_OP (OC0 disconnected)                           */
 /*       : CLEAR_OC0_ON_COM_SET_TOP (While setting OC0 at TOP)    */
 /*		 : SET_OC0_ON_COM_CLEAR_TOP   (While Clearing OC0 at TOP) */
+/******************************************************************/
+/*                   Only Use this table if                       */ 
+/*      TIMER0_WAVEFORM_GENERATION_MODE is Set to FAST_PWM        */
 /******************************************************************/
 
 #define TIMER0_COM_FAST_PWM NORMAL_OP
@@ -45,6 +51,9 @@
 /* Modes : NORMAL_OP (OC0 disconnected)                                      */
 /*       : CLEAR_OC0_ON_COM_UP_COUNTING (Set OC0 on COM when downcounting)   */
 /*		 : SET_OC0_ON_COM_UP_COUNTING   (Clear OC0 on COM when downcounting) */
+/*****************************************************************************/
+/*                            Only Use this table if                         */ 
+/*        TIMER0_WAVEFORM_GENERATION_MODE is Set to PWM_PHASE_CORRECT        */
 /*****************************************************************************/
 
 #define TIMER0_COM_PHASE_CORRECT_PWM NORMAL_OP

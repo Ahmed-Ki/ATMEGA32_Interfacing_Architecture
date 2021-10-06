@@ -24,22 +24,34 @@ void TIMER0_voidInit(void)
 #if TIMER0_WAVEFORM_GENERATION_MODE == NORMAL
     CLEAR_BIT(TCCR0, 6);
     CLEAR_BIT(TCCR0, 3);
+    /* CLEAR COM Bits for Normal Operation */
+    CLEAR_BIT(TCCR0, 4);
+    CLEAR_BIT(TCCR0, 5);
+
 #elif TIMER0_WAVEFORM_GENERATION_MODE == PWM_PHASE_CORRECT
     SET_BIT(TCCR0, 6);
     CLEAR_BIT(TCCR0, 3);
+    /* TIMER0_COM_PHASE_CORRECT_PWM Operation Mode */
+#if TIMER0_COM_PHASE_CORRECT_PWM == NORMAL_OP
+    CLEAR_BIT(TCCR0, 4);
+    CLEAR_BIT(TCCR0, 5);
+#elif TIMER0_COM_PHASE_CORRECT_PWM == CLEAR_OC0_ON_COM_UP_COUNTING
+    CLEAR_BIT(TCCR0, 4)
+    SET_BIT(TCCR0, 5);
+#elif TIMER0_COM_PHASE_CORRECT_PWM == SET_OC0_ON_COM_UP_COUNTING
+    SET_BIT(TCCR0, 4);
+    SET_BIT(TCCR0, 5);
+/* Default is NORMAL_OP */
+#else
+    CLEAR_BIT(TCCR0, 4);
+    CLEAR_BIT(TCCR0, 5);
+#endif
+    /* End TIMER0_COM_PHASE_CORRECT_PWM Operation */
+
 #elif TIMER0_WAVEFORM_GENERATION_MODE == CTC
     CLEAR_BIT(TCCR0, 6);
     SET_BIT(TCCR0, 3);
-#elif TIMER0_WAVEFORM_GENERATION_MODE == FAST_PWM
-    SET_BIT(TCCR0, 6);
-    SET_BIT(TCCR0, 3);
-
-/* Default is NORMAL */
-#else
-    CLEAR_BIT(TCCR0, 6);
-    CLEAR_BIT(TCCR0, 3);
-#endif
-
+    /* TIMER0_COM_NON_PWM Operation Mode */
 #if TIMER0_COM_NON_PWM == NORMAL_OP
     CLEAR_BIT(TCCR0, 4);
     CLEAR_BIT(TCCR0, 5);
@@ -52,13 +64,17 @@ void TIMER0_voidInit(void)
 #elif TIMER0_COM_NON_PWM == SET_OC0_ON_COM
     SET_BIT(TCCR0, 4);
     SET_BIT(TCCR0, 5);
-
 /* Default is NORMAL_OP */
 #else
     CLEAR_BIT(TCCR0, 4);
     CLEAR_BIT(TCCR0, 5);
 #endif
+    /* End TIMER0_COM_NON_PWM Operation */
 
+#elif TIMER0_WAVEFORM_GENERATION_MODE == FAST_PWM
+    SET_BIT(TCCR0, 6);
+    SET_BIT(TCCR0, 3);
+    /* TIMER0_COM_FAST_PWM Operation Mode */
 #if TIMER0_COM_FAST_PWM == NORMAL_OP
     CLEAR_BIT(TCCR0, 4);
     CLEAR_BIT(TCCR0, 5);
@@ -68,27 +84,17 @@ void TIMER0_voidInit(void)
 #elif TIMER0_COM_FAST_PWM == SET_OC0_ON_COM_CLEAR_TOP
     SET_BIT(TCCR0, 4);
     SET_BIT(TCCR0, 5);
-
 /* Default is NORMAL_OP */
 #else
     CLEAR_BIT(TCCR0, 4);
     CLEAR_BIT(TCCR0, 5);
 #endif
+    /* End TIMER0_COM_FAST_PWM Operation */
 
-#if TIMER0_COM_PHASE_CORRECT_PWM == NORMAL_OP
-    CLEAR_BIT(TCCR0, 4);
-    CLEAR_BIT(TCCR0, 5);
-#elif TIMER0_COM_PHASE_CORRECT_PWM == CLEAR_OC0_ON_COM_UP_COUNTING
-    CLEAR_BIT(TCCR0, 4)
-    SET_BIT(TCCR0, 5);
-#elif TIMER0_COM_PHASE_CORRECT_PWM == SET_OC0_ON_COM_UP_COUNTING
-    SET_BIT(TCCR0, 4);
-    SET_BIT(TCCR0, 5);
-
-/* Default is NORMAL_OP */
+/* Default is NORMAL */
 #else
-    CLEAR_BIT(TCCR0, 4);
-    CLEAR_BIT(TCCR0, 5);
+    CLEAR_BIT(TCCR0, 6);
+    CLEAR_BIT(TCCR0, 3);
 #endif
 
 #if TIMER0_PRESCALER == TIMER0_DIV_BY_1
@@ -191,7 +197,6 @@ void TIMER0_voidSetCompareValue(u8 u8ValueCpy)
 {
     OCR0 = u8ValueCpy;
 }
-
 
 /* This is a CallBack function used in the Application layer        */
 /* to write your ISR (Interrupt Service Routine) for Timer Overflow */
