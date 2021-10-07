@@ -19,7 +19,7 @@
 
 
 
-
+/* Initialization function for LCD */
 void LCD_voidInit(void)
 {
     /* Latch Low */
@@ -54,7 +54,7 @@ void LCD_voidInit(void)
     _delay_ms(1);
 }
 
-
+/* Function to Send Commands to LCD Display */
 void LCD_voidSendCmd(u8 u8CmdCpy)
 {
     /* RS = LOW Command Register*/
@@ -65,7 +65,7 @@ void LCD_voidSendCmd(u8 u8CmdCpy)
 
 }
 
-
+/* Function to write a character on LCD */
 void LCD_voidWriteChar(u8 u8CharCpy)
 {
     /* RS = HIGH Data Register */
@@ -136,9 +136,8 @@ void LCD_voidGoToXY(u8 u8LineNbCpy , u8 u8CharNbCpy)
 
 }
 
-/* Function to write strings */
 
-/* Write strings anf end it with \0 to terminate */
+/* Write strings and terminates at \0 */
 
 void LCD_voidWriteString(u8 * pu8StringCpy)
 {
