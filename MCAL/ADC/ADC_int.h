@@ -27,8 +27,11 @@ void ADC_voidInterruptDisable(void);
 /* Signals ADC to start conversion */
 void ADC_voidStartConversion(void);
 
-/* Choose auto trigger source for ADC */
-void ADC_voidAutoTrigger(u8 u8TriggerSource);
+/* Set auto trigger source for ADC */
+void ADC_voidSetAutoTrigger(void);
+
+/* Clear auto trigger source for ADC */
+void ADC_voidClearAutoTrigger(void);
 
 /* Read ADC value */
 u16 ADC_u16ReadValue(void);

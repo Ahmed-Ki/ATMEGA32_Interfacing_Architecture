@@ -236,6 +236,18 @@ void ADC_voidStartConversion(void)
 	SET_BIT(ADCSRA , 6 );
 }
 
+/* Set auto trigger source for ADC */
+void ADC_voidSetAutoTrigger(void)
+{
+	SET_BIT(ADCSRA,5);
+}
+
+/* Clear auto trigger source for ADC */
+void ADC_voidClearAutoTrigger(void)
+{
+	CLEAR_BIT(ADCSRA,5);
+}
+
 u16 ADC_u16ReadValue(void)
 {
 	u16 u16ReadValueLoc = 0;
