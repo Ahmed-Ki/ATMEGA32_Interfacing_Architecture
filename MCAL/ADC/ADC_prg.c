@@ -264,7 +264,7 @@ u16 ADC_u16ReadValue(void)
 	u16ReadValueLoc = ADCH;
 	#else
 	u16ReadValueLoc = ADCL;
-	u16ReadValueLoc |= ADCH <<8;
+	u16ReadValueLoc |= (ADCH <<8);
 	#endif
 	return u16ReadValueLoc;
 	

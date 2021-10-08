@@ -61,10 +61,10 @@
 #define SFIOR       *((volatile u8 *)  0x50)
 
 /* Memory mapped address of ADC Data Register (ADCL) */
-#define ADCL        *((volatile u8 *)  0x25)
+#define ADCL        *((volatile u8 *)  0x24)
 
 /* Memory mapped address of ADC Data Register (ADCH) */
-#define ADCH        *((volatile u8 *)  0x24)
+#define ADCH        *((volatile u8 *)  0x25)
 
 
 
